@@ -50,7 +50,7 @@ def custformatday(c, day, weekday):
     """
     if day == 0:
         # day outside month
-        return '<td class="%s">&nbsp;</td>' % c.cssclass_noday
+        return '<td class="%s">&nbsp;</td>' % "noday"
     else:
         return '<td class="%s">%s</td>' % (c.cssclasses[weekday], str(day) + get_event(day))
 
