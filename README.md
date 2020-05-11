@@ -1,4 +1,4 @@
-# Final Project
+[![Build Status](https://travis-ci.org/am2892/FinalProject.svg?branch=master)](https://travis-ci.org/am2892/FinalProject)
 
 #### Team Members
 - Aaron Miller
@@ -14,10 +14,7 @@
 - User can add event description, date, time, guests, location, URL, etc.
 - User can delete event(s) in calendar
 - User can see monthly calendar view with events scheduled
-- User can press on event to see more information about that event
-- User can see event description, date, time, guests, location, URL, etc
-- User can load birthdays of friends/family/etc to automatically populate their calendar
-- Use an API to automatically populate all US-centric holidays or holidays of choice
+- Uses a python module to automatically populate all US-centric holidays or holidays of choice
 
 
 #### Tools Used 
@@ -25,6 +22,7 @@
 * SQLAlchemy
 * Sqlite
 * Jinja
-* Scipy
+
 
 #### Screenshots
+![IS601_Final Project_Successful Login](https://user-images.githubusercontent.com/60370144/81518834-52216680-930d-11ea-829d-0b10074581ad.gif)

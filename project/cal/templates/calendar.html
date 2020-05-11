@@ -2,12 +2,100 @@
 
 {% block content %}
 <h1 class="title">
-  Welcome!
+  Welcome, {{ name }}!!
 </h1>
 <h2 class="subtitle">
   Monthly Calendar and Planner
 </h2>
+
+<div class="clearfix">
+	<a class="btn btn-info float-right" href="{{ url_for('cal.monthUP') }}"> Next Month </a>
+	<a class="btn btn-info float-right" href="{{ url_for('cal.monthDOWN') }}"> Previous Month </a>
+</div>
+
+<div class="year buttons">
+        <a class="btn btn-success float-right" href="{{ url_for('cal.yearUP') }}"> Next Year </a>
+        <a class="btn btn-success float-right" href="{{ url_for('cal.yearDOWN') }}"> Previous Year </a>
+</div>
+
     <div class="table-responsive">
     {{ calendar|safe }}
     </div>
+
+<div class="box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}.
+        </div>
+        {% endif %}
+        {% endwith %}
+
+Add event to your calendar
+
+<!-- <form>
+<label for="eventtitle">Event title:</label>
+<input type="text" id="eventtitle" name="eventtitle"><br>
+<label for="eventdesc">Event description:</label>
+<input type="text" id="eventdesc" name="eventdesc"><br>
+<label for="starttime">Start day/time:</label>
+<input type="datetime-local" id="starttime" name="starttime"><br>
+<label for="endtime">End day/time:</label>
+<input type="datetime-local" id="endtime" name="endtime"><br>
+<input type="submit" value="Add to calendar">
+</form> -->
+
+<form method="POST" action="/calendar" class="event-form">
+    <div class="field">
+        <div class="control">
+            <input class="event-input" type="text" name="eventtitle" placeholder="Event Title" autofocus="">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <input class="event-input" type="text" name="eventdesc" placeholder="Event Description" autofocus="">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <label for="starttime">Start day/time:</label>
+            <input class="event-input" type="datetime-local" name="starttime" placeholder="Start Date/Time" autofocus="">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <label for="endtime">End day/time:</label>
+            <input class="event-input" type="datetime-local" name="endtime" placeholder="End Date/Time" autofocus="">
+        </div>
+    </div>
+
+    <button class="event-button">Add event</button>
+</form>
+
+<div>
+        <div>
+          <div>
+            <h1>{{ name }}'s Events</h1>
+          </div>
+        <table>
+        {% if logCount %}
+            {% for log in logCount %}
+            <tr>
+              <td class='log'><b>{{log.eventtitle}}</b>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td class='log'>{{log.eventdesc}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td class='log'>{{log.starttime.strftime( "%x %I:%M %p" )}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td class='log'>{{log.endtime.strftime( "%x %I:%M %p" )}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td>
+                  <a class="button delete" href="{{ url_for('cal.deleteEvents', eventHistory_id=log.id) }}">Delete this event</a>
+              </td>
+              </td> 
+            </tr>
+          {% endfor %}
+        {% endif %}
+        </table>
+        </div>
+    
 {% endblock %}
